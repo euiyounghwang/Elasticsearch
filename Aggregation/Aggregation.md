@@ -244,4 +244,64 @@ GET /order/_search
 }
 ```
 
+**sum_other_doc_count**  
+ 
+sum_other_doc_count 는 그룹핑 되지 않은 count 를 말하는데 위의 예에서는 모두 그룹핑 되어 해당 count 가 0 이 된다.
+total_amount 를 기준으로 Buckets 를 구해보면 값이 다양하여 그룹핑 되지 않은 많은 documents 항목이 있으며 아래와 같은 결과를 볼 수 있다.
+
+# sum_other_doc_count
+
+**GET Search Aggregation**
+```sh
+GET /order/_search
+{
+  "size":0,
+  "aggs": {
+    "status_terms":{
+      "terms": {
+        "field": "total_amount"
+      }
+    }
+  }
+}
+```
+
+**GET Search Result Aggregation**  
+```sh
+{
+  "took" : 3,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 1,
+    "successful" : 1,
+    "skipped" : 0,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : {
+      "value" : 2,
+      "relation" : "eq"
+    },
+    "max_score" : null,
+    "hits" : [ ]
+  },
+  "aggregations" : {
+    "status_terms" : {
+      "doc_count_error_upper_bound" : 0,
+      "sum_other_doc_count" : 0,
+      "buckets" : [
+        {
+          "key" : 106.26000213623047,
+          "doc_count" : 1
+        },
+        {
+          "key" : 160.0800018310547,
+          "doc_count" : 1
+        }
+      ]
+    }
+  }
+}
+```
+
 
