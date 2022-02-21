@@ -3,6 +3,8 @@
  
 **metric aggregations는 산술 연산 결과를 확인할 때 쓰인다.**  
 
+![image](https://user-images.githubusercontent.com/84139720/155038643-a6aafc05-0781-4d19-9d0c-0c67fcada667.png)
+
 
 
 **PUT INDEX**  
