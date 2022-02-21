@@ -206,4 +206,42 @@ GET /order/_search
 }
 ```
 
+**GET Search Result Aggregation**  
+```sh
+{
+  "took" : 5,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 1,
+    "successful" : 1,
+    "skipped" : 0,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : {
+      "value" : 2,
+      "relation" : "eq"
+    },
+    "max_score" : null,
+    "hits" : [ ]
+  },
+  "aggregations" : {
+    "status_terms" : {
+      "doc_count_error_upper_bound" : 0,
+      "sum_other_doc_count" : 0,
+      "buckets" : [
+        {
+          "key" : "completed",
+          "doc_count" : 1
+        },
+        {
+          "key" : "processed",
+          "doc_count" : 1
+        }
+      ]
+    }
+  }
+}
+```
+
 
