@@ -137,4 +137,38 @@ GET /order/_search
 }
 ```
 
-
+**GET Search Result Aggregation**  
+```sh
+{
+  "took" : 989,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 1,
+    "successful" : 1,
+    "skipped" : 0,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : {
+      "value" : 2,
+      "relation" : "eq"
+    },
+    "max_score" : null,
+    "hits" : [ ]
+  },
+  "aggregations" : {
+    "max_sale" : {
+      "value" : 160.0800018310547
+    },
+    "avg_sale" : {
+      "value" : 133.17000198364258
+    },
+    "min_sale" : {
+      "value" : 106.26000213623047
+    },
+    "total_sales" : {
+      "value" : 266.34000396728516
+    }
+  }
+}
+```
