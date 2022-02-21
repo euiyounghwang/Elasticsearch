@@ -109,7 +109,7 @@ PUT order/
 
 **GET Search Aggregation**  
 ```sh
-GET /order/default/_search
+GET /order/_search
 {
   "size":0,
   "aggs": {
