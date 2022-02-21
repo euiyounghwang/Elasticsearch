@@ -109,3 +109,36 @@ GET /order/default/_mapping
 {"purchased_at":"2016-05-08T19:54:44Z","lines":[{"product_id":9,"amount":29.8,"quantity":2},{"product_id":6,"amount":97.61,"quantity":3}],"total_amount":127.41,"salesman":{"id":96,"name":"Susannah Grigoryev"},"sales_channel":"phone","status":"cancelled"}
 {"index":{"_id":20}}
 {"purchased_at":"2016-06-19T21:34:51Z","lines":[{"product_id":2,"amount":23.3,"quantity":2},{"product_id":5,"amount":30.44,"quantity":2},{"product_id":6,"amount":22.15,"quantity":1}],"total_amount":75.89,"salesman":{"id":66,"name":"Janeta Crutchfield"},"sales_channel":"phone","status":"completed"}
+```
+
+**GET Search Aggregation**  
+```sh
+GET /order/default/_search
+{
+  "size":0,
+  "aggs": {
+    "total_sales": {
+      "sum": {
+        "field": "total_amount"
+      }
+    },
+    "avg_sale":{
+      "avg": {
+        "field": "total_amount"
+      }
+    },
+     "min_sale":{
+      "min": {
+        "field": "total_amount"
+      }
+    },
+    "max_sale":{
+      "max": {
+        "field": "total_amount"
+      }
+    }     
+  }
+}
+```
+
+
