@@ -1,66 +1,62 @@
 
 **PUT INDEX**  
 ```sh
-GET /order/default/_mapping
+PUT order/
 {
-  "order" : {
-    "mappings" : {
-      "default" : {
-        "properties" : {
-          "lines" : {
-            "properties" : {
-              "amount" : {
-                "type" : "float"
-              },
-              "product_id" : {
-                "type" : "long"
-              },
-              "quantity" : {
-                "type" : "long"
-              }
-            }
+  "mappings": {
+    "properties": {
+      "lines": {
+        "properties": {
+          "amount": {
+            "type": "float"
           },
-          "purchased_at" : {
-            "type" : "date"
+          "product_id": {
+            "type": "long"
           },
-          "sales_channel" : {
-            "type" : "text",
-            "fields" : {
-              "keyword" : {
-                "type" : "keyword",
-                "ignore_above" : 256
-              }
-            }
-          },
-          "salesman" : {
-            "properties" : {
-              "id" : {
-                "type" : "long"
-              },
-              "name" : {
-                "type" : "text",
-                "fields" : {
-                  "keyword" : {
-                    "type" : "keyword",
-                    "ignore_above" : 256
-                  }
-                }
-              }
-            }
-          },
-          "status" : {
-            "type" : "text",
-            "fields" : {
-              "keyword" : {
-                "type" : "keyword",
-                "ignore_above" : 256
-              }
-            }
-          },
-          "total_amount" : {
-            "type" : "float"
+          "quantity": {
+            "type": "long"
           }
         }
+      },
+      "purchased_at": {
+        "type": "date"
+      },
+      "sales_channel": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "salesman": {
+        "properties": {
+          "id": {
+            "type": "long"
+          },
+          "name": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          }
+        }
+      },
+      "status": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "total_amount": {
+        "type": "float"
       }
     }
   }
