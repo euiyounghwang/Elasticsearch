@@ -182,6 +182,28 @@ GET /order/_search
 ```
 
 
+# Bucket Aggregations
+ 
+**Bucket Aggregations 기능을 이용하면 Elasticsearch 는 documents 를 위한 그룹인 Bucket 을 만든다.**  
+ 
+그림에서 보면 두개의 Bucket 이 보이며 SQL 로 치면 group by 와 같은 기능을 한다.
+
 ![image](https://user-images.githubusercontent.com/84139720/155038886-e4a75020-b82d-4116-92dd-a216baab9298.png)
+
+
+**GET Search Aggregation**  
+```sh
+GET /order/_search
+{
+  "size":0,
+  "aggs": {
+    "status_terms":{
+      "terms": {
+        "field": "status.keyword"
+      }
+    }
+  }
+}
+```
 
 
