@@ -95,12 +95,7 @@ PUT nori_ict_korean
  }
 ```
 
-**NORI Index Sample**  
-```sh
- POST tt/_bulk
- {"index":{"_id":1}}
- {"message":"The quick cat animal", "a" : "quick and or dog"}
-```
+**NORI Analyzer Test **  
 
 ```sh
  GET nori_ict_korean/_analyze
