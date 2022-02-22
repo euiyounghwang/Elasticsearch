@@ -1161,6 +1161,8 @@ GET order/_search
 ```
 
 **History Each Month**  
+
+```sh
 GET ai-jean-server-log-*,unfair-slave-manual-*/_search
 {
   "track_total_hits": true,
