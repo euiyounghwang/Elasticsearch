@@ -1097,4 +1097,67 @@ GET order/_search
 혹은 Histogram 이라는 옵션을 사용하는데 이는 특정 간격으로 Range 를 구할수 있다.
 ![image](https://user-images.githubusercontent.com/84139720/155049248-a08310d1-4a9c-4d51-918d-9d140313e24b.png)
 
+```sh
+GET order/_search
+{
+  "size":0,
+  "aggs": {
+    "amount_distribution": {
+      "histogram": {
+        "field": "total_amount",
+        "interval": 50
+      }
+    }
+  }
+}
+
+# Search Results
+{
+  "took" : 6,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 1,
+    "successful" : 1,
+    "skipped" : 0,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : {
+      "value" : 20,
+      "relation" : "eq"
+    },
+    "max_score" : null,
+    "hits" : [ ]
+  },
+  "aggregations" : {
+    "amount_distribution" : {
+      "buckets" : [
+        {
+          "key" : 0.0,
+          "doc_count" : 3
+        },
+        {
+          "key" : 50.0,
+          "doc_count" : 7
+        },
+        {
+          "key" : 100.0,
+          "doc_count" : 6
+        },
+        {
+          "key" : 150.0,
+          "doc_count" : 3
+        },
+        {
+          "key" : 200.0,
+          "doc_count" : 1
+        }
+      ]
+    }
+  }
+}
+
+
+```
+
 
