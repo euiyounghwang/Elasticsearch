@@ -1160,4 +1160,466 @@ GET order/_search
 
 ```
 
+**History Each Month**  
+GET ai-jean-server-log-*,unfair-slave-manual-*/_search
+{
+  "track_total_hits": true,
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "range": {
+            "TIMESTAMP": {
+              "gte": "2020-09-01",
+              "format": "yyyy-MM-dd||yyyy"
+            }
+          }
+        },
+        {
+          "bool": {
+            "should": [
+              {
+                "wildcard": {
+                  "KEY": {
+                    "value": "*000001"
+                  }
+                }
+              },
+              {
+                "terms": {
+                  "EXTRACT_UNIQUE_ID": [
+                    "000001"
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "must_not": [
+        {
+          "bool": {
+            "should": [
+              {
+                "terms": {
+                  "SSO_LOGIN_ID.keyword": [
+                    "pd292816",
+                    "292816",
+                    "pd271610",
+                    "271610",
+                    "pd294562",
+                    "294562",
+                    "pd0a8762",
+                    "1",
+                    "2",
+                    "S13324"
+                  ]
+                }
+              },
+              {
+                "terms": {
+                  "LOGIN_ID": [
+                    "pd292816",
+                    "292816",
+                    "pd271610",
+                    "271610",
+                    "pd294562",
+                    "294562",
+                    "pd0a8762",
+                    "1",
+                    "2"
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "size": 0,
+  "sort": [
+    {
+      "TIMESTAMP": {
+        "order": "desc"
+      },
+      "EXTRACT_UNIQUE_ID": {
+        "order": "desc"
+      }
+    }
+  ],
+  "aggs": {
+    "metrics_by_data": {
+      "date_histogram": {
+        "field": "TIMESTAMP",
+        "interval": "month",
+        "min_doc_count": 0,
+        "extended_bounds": {
+          "min": 1598886000000,
+          "max": 1633014000000
+        },
+        "order": {
+          "_key": "asc"
+        },
+        "format": "yyyy-MM"
+      },
+      "aggs": {
+        "SYSTEM_TYPE": {
+          "sampler": {
+            "shard_size": 150000
+          },
+          "aggs": {
+            "TYPE": {
+              "terms": {
+                "field": "TYPE.keyword"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+# Search Results
+{
+  "took" : 1049,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 130,
+    "successful" : 130,
+    "skipped" : 0,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : {
+      "value" : 98956,
+      "relation" : "eq"
+    },
+    "max_score" : null,
+    "hits" : [ ]
+  },
+  "aggregations" : {
+    "metrics_by_data" : {
+      "buckets" : [
+        {
+          "key_as_string" : "2020-08",
+          "key" : 1596240000000,
+          "doc_count" : 0,
+          "SYSTEM_TYPE" : {
+            "doc_count" : 0,
+            "TYPE" : {
+              "doc_count_error_upper_bound" : 0,
+              "sum_other_doc_count" : 0,
+              "buckets" : [ ]
+            }
+          }
+        },
+        {
+          "key_as_string" : "2020-09",
+          "key" : 1598918400000,
+          "doc_count" : 0,
+          "SYSTEM_TYPE" : {
+            "doc_count" : 0,
+            "TYPE" : {
+              "doc_count_error_upper_bound" : 0,
+              "sum_other_doc_count" : 0,
+              "buckets" : [ ]
+            }
+          }
+        },
+        {
+          "key_as_string" : "2020-10",
+          "key" : 1601510400000,
+          "doc_count" : 0,
+          "SYSTEM_TYPE" : {
+            "doc_count" : 0,
+            "TYPE" : {
+              "doc_count_error_upper_bound" : 0,
+              "sum_other_doc_count" : 0,
+              "buckets" : [ ]
+            }
+          }
+        },
+        {
+          "key_as_string" : "2020-11",
+          "key" : 1604188800000,
+          "doc_count" : 0,
+          "SYSTEM_TYPE" : {
+            "doc_count" : 0,
+            "TYPE" : {
+              "doc_count_error_upper_bound" : 0,
+              "sum_other_doc_count" : 0,
+              "buckets" : [ ]
+            }
+          }
+        },
+        {
+          "key_as_string" : "2020-12",
+          "key" : 1606780800000,
+          "doc_count" : 0,
+          "SYSTEM_TYPE" : {
+            "doc_count" : 0,
+            "TYPE" : {
+              "doc_count_error_upper_bound" : 0,
+              "sum_other_doc_count" : 0,
+              "buckets" : [ ]
+            }
+          }
+        },
+        {
+          "key_as_string" : "2021-01",
+          "key" : 1609459200000,
+          "doc_count" : 0,
+          "SYSTEM_TYPE" : {
+            "doc_count" : 0,
+            "TYPE" : {
+              "doc_count_error_upper_bound" : 0,
+              "sum_other_doc_count" : 0,
+              "buckets" : [ ]
+            }
+          }
+        },
+        {
+          "key_as_string" : "2021-02",
+          "key" : 1612137600000,
+          "doc_count" : 0,
+          "SYSTEM_TYPE" : {
+            "doc_count" : 0,
+            "TYPE" : {
+              "doc_count_error_upper_bound" : 0,
+              "sum_other_doc_count" : 0,
+              "buckets" : [ ]
+            }
+          }
+        },
+        {
+          "key_as_string" : "2021-03",
+          "key" : 1614556800000,
+          "doc_count" : 0,
+          "SYSTEM_TYPE" : {
+            "doc_count" : 0,
+            "TYPE" : {
+              "doc_count_error_upper_bound" : 0,
+              "sum_other_doc_count" : 0,
+              "buckets" : [ ]
+            }
+          }
+        },
+        {
+          "key_as_string" : "2021-04",
+          "key" : 1617235200000,
+          "doc_count" : 0,
+          "SYSTEM_TYPE" : {
+            "doc_count" : 0,
+            "TYPE" : {
+              "doc_count_error_upper_bound" : 0,
+              "sum_other_doc_count" : 0,
+              "buckets" : [ ]
+            }
+          }
+        },
+        {
+          "key_as_string" : "2021-05",
+          "key" : 1619827200000,
+          "doc_count" : 0,
+          "SYSTEM_TYPE" : {
+            "doc_count" : 0,
+            "TYPE" : {
+              "doc_count_error_upper_bound" : 0,
+              "sum_other_doc_count" : 0,
+              "buckets" : [ ]
+            }
+          }
+        },
+        {
+          "key_as_string" : "2021-06",
+          "key" : 1622505600000,
+          "doc_count" : 6133,
+          "SYSTEM_TYPE" : {
+            "doc_count" : 6133,
+            "TYPE" : {
+              "doc_count_error_upper_bound" : 0,
+              "sum_other_doc_count" : 0,
+              "buckets" : [
+                {
+                  "key" : "AI_JEAN_LOG",
+                  "doc_count" : 6133
+                }
+              ]
+            }
+          }
+        },
+        {
+          "key_as_string" : "2021-07",
+          "key" : 1625097600000,
+          "doc_count" : 10400,
+          "SYSTEM_TYPE" : {
+            "doc_count" : 10400,
+            "TYPE" : {
+              "doc_count_error_upper_bound" : 0,
+              "sum_other_doc_count" : 0,
+              "buckets" : [
+                {
+                  "key" : "AI_JEAN_LOG",
+                  "doc_count" : 10400
+                }
+              ]
+            }
+          }
+        },
+        {
+          "key_as_string" : "2021-08",
+          "key" : 1627776000000,
+          "doc_count" : 12034,
+          "SYSTEM_TYPE" : {
+            "doc_count" : 12034,
+            "TYPE" : {
+              "doc_count_error_upper_bound" : 0,
+              "sum_other_doc_count" : 0,
+              "buckets" : [
+                {
+                  "key" : "AI_JEAN_LOG",
+                  "doc_count" : 12034
+                }
+              ]
+            }
+          }
+        },
+        {
+          "key_as_string" : "2021-09",
+          "key" : 1630454400000,
+          "doc_count" : 18738,
+          "SYSTEM_TYPE" : {
+            "doc_count" : 18738,
+            "TYPE" : {
+              "doc_count_error_upper_bound" : 0,
+              "sum_other_doc_count" : 0,
+              "buckets" : [
+                {
+                  "key" : "AI_JEAN_LOG",
+                  "doc_count" : 18738
+                }
+              ]
+            }
+          }
+        },
+        {
+          "key_as_string" : "2021-10",
+          "key" : 1633046400000,
+          "doc_count" : 10285,
+          "SYSTEM_TYPE" : {
+            "doc_count" : 10285,
+            "TYPE" : {
+              "doc_count_error_upper_bound" : 0,
+              "sum_other_doc_count" : 0,
+              "buckets" : [
+                {
+                  "key" : "AI_JEAN_LOG",
+                  "doc_count" : 10285
+                }
+              ]
+            }
+          }
+        },
+        {
+          "key_as_string" : "2021-11",
+          "key" : 1635724800000,
+          "doc_count" : 11073,
+          "SYSTEM_TYPE" : {
+            "doc_count" : 11073,
+            "TYPE" : {
+              "doc_count_error_upper_bound" : 0,
+              "sum_other_doc_count" : 0,
+              "buckets" : [
+                {
+                  "key" : "AI_JEAN_LOG",
+                  "doc_count" : 11061
+                },
+                {
+                  "key" : "POSCOMPLY_LOG_30",
+                  "doc_count" : 8
+                },
+                {
+                  "key" : "POSCOMPLY_LOG_02",
+                  "doc_count" : 4
+                }
+              ]
+            }
+          }
+        },
+        {
+          "key_as_string" : "2021-12",
+          "key" : 1638316800000,
+          "doc_count" : 14679,
+          "SYSTEM_TYPE" : {
+            "doc_count" : 14679,
+            "TYPE" : {
+              "doc_count_error_upper_bound" : 0,
+              "sum_other_doc_count" : 0,
+              "buckets" : [
+                {
+                  "key" : "AI_JEAN_LOG",
+                  "doc_count" : 14667
+                },
+                {
+                  "key" : "POSCOMPLY_LOG_30",
+                  "doc_count" : 12
+                }
+              ]
+            }
+          }
+        },
+        {
+          "key_as_string" : "2022-01",
+          "key" : 1640995200000,
+          "doc_count" : 8024,
+          "SYSTEM_TYPE" : {
+            "doc_count" : 8024,
+            "TYPE" : {
+              "doc_count_error_upper_bound" : 0,
+              "sum_other_doc_count" : 0,
+              "buckets" : [
+                {
+                  "key" : "AI_JEAN_LOG",
+                  "doc_count" : 8011
+                },
+                {
+                  "key" : "POSCOMPLY_LOG_30",
+                  "doc_count" : 13
+                }
+              ]
+            }
+          }
+        },
+        {
+          "key_as_string" : "2022-02",
+          "key" : 1643673600000,
+          "doc_count" : 7590,
+          "SYSTEM_TYPE" : {
+            "doc_count" : 7590,
+            "TYPE" : {
+              "doc_count_error_upper_bound" : 0,
+              "sum_other_doc_count" : 0,
+              "buckets" : [
+                {
+                  "key" : "AI_JEAN_LOG",
+                  "doc_count" : 7588
+                },
+                {
+                  "key" : "POSCOMPLY_LOG_30",
+                  "doc_count" : 2
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+```
+
+
+
 
