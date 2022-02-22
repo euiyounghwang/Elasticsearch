@@ -1205,31 +1205,7 @@ GET ai-jean-server-log-*,unfair-slave-manual-*/_search
               {
                 "terms": {
                   "SSO_LOGIN_ID.keyword": [
-                    "pd292816",
-                    "292816",
-                    "pd271610",
-                    "271610",
-                    "pd294562",
-                    "294562",
-                    "pd0a8762",
-                    "1",
-                    "2",
-                    "S13324"
-                  ]
-                }
-              },
-              {
-                "terms": {
-                  "LOGIN_ID": [
-                    "pd292816",
-                    "292816",
-                    "pd271610",
-                    "271610",
-                    "pd294562",
-                    "294562",
-                    "pd0a8762",
-                    "1",
-                    "2"
+                    "exclude"
                   ]
                 }
               }
