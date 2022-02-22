@@ -319,7 +319,9 @@ GET order/_search
 # Bucket Aggregations
  
 **Bucket Aggregations 기능을 이용하면 Elasticsearch 는 documents 를 위한 그룹인 Bucket 을 만든다.**  
- 
+> 즉, Bucket aggregation 은 주어진 조건으로 분류된 버킷 들을 만들고, 각 버킷에 소속되는 도큐먼트들을 모아 그룹으로 구분하는 것입니다. 
+> 각 버킷 별로 포함되는 도큐먼트의 개수는 doc_count 값에 기본적으로 표시가 되며 각 버킷 안에 metrics aggregation 을 이용해서 다른 계산들도 가능합니다. 주로 사용되는 bucket aggregation 들은 Range, Histogram, Terms 등이 있습니다.
+
 그림에서 보면 두개의 Bucket 이 보이며 SQL 로 치면 group by 와 같은 기능을 한다.
 
 ![image](https://user-images.githubusercontent.com/84139720/155038886-e4a75020-b82d-4116-92dd-a216baab9298.png)
