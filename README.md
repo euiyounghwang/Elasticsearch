@@ -7,13 +7,8 @@ Elasticsearch Cluster, Settings&amp;Mappings, Query, Extra
 
 
 > POSCO : 사용자 중심의 Enterprise Search 기능 구현을 위한 검색엔진
-**Korean Version**  
-https://www.elastic.co/kr/customers/posco
-
-
 > POSCO: Moving to Elasticsearch for a More User-centric Enterprise Search Experience
-**English Version**  
-https://www.elastic.co/customers/posco
+https://www.elastic.co/kr/customers/posco
 
 
 ```sh
