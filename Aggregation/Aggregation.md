@@ -259,8 +259,10 @@ GET /order/_search
 
 **sum_other_doc_count**  
  
-sum_other_doc_count 는 그룹핑 되지 않은 count 를 말하는데 위의 예에서는 모두 그룹핑 되어 해당 count 가 0 이 된다.
-total_amount 를 기준으로 Buckets 를 구해보면 값이 다양하여 그룹핑 되지 않은 많은 documents 항목이 있으며 아래와 같은 결과를 볼 수 있다.
+> sum_other_doc_count 는 그룹핑 되지 않은 count 를 말하는데 위의 예에서는 모두 그룹핑 되어 해당 count 가 0 이 된다.
+> total_amount 를 기준으로 Buckets 를 구해보면 값이 다양하여 그룹핑 되지 않은 많은 documents 항목이 있으며 아래와 같은 결과를 볼 수 있다.
+
+> sum_other_doc_count - this number is the sum of the document counts for all buckets that are not part of the response. We return only the top buckets in the response. If there are many buckets, some buckets will not make it to the response. We count all the documents that contain these buckets and display this number as sum_other_doc_count.
 
 # sum_other_doc_count
 
