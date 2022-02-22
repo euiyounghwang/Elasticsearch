@@ -485,3 +485,24 @@ GET /order/_search
 ```
 
 
+
+![image](https://user-images.githubusercontent.com/84139720/155046872-9819d595-ccd9-436a-9e47-585587088cdd.png)
+
+예를 들어 전체 제품이 아래와 같다고 생각해 보면
+이중 각 Shard 별 3개지 top products 만 count 하여
+![image](https://user-images.githubusercontent.com/84139720/155046915-5944841b-7d24-41e7-ae33-10a6c5109149.png)
+실행의 결과가 아래와 같게 된다.
+ 
+결과적으로 Product B 와 Product C 의 집계 결과가 전체 documents 에서 집계한 것과 차이가 발생한다.
+
+![image](https://user-images.githubusercontent.com/84139720/155047069-84a99c36-4d42-4fa9-bdd8-cfabc077a329.png)
+oc_count_error_upper_bound 는 이렇듯 포함되지 않은 데이터 중 마지막 행을 조사하여 리턴한다.
+ 
+위의 경우라면 각 shard 의 5번 행이 되며 10 + 10 + 10 = 30 을 리턴할 것이다.
+
+Nested Aggregation
+ 
+Metric Aggregation 과 Bucket Aggregation 은 같이 사용되어 쿼리 결과를 얻어낼 때 사용할 수 있다.
+![image](https://user-images.githubusercontent.com/84139720/155047101-7f73bc2b-075a-468d-a588-d628883f5601.png)
+
+
