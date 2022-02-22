@@ -286,6 +286,9 @@ GET order/_search
 # date aggregation
 **2016-07-10T16:52:43Z**  
 **그리니치 천문대 표준시의 기준 : GMT(Greenwich Mean Time) 는 UTC와 같다.**  
+**UTC TimeZone **  
+**https://currentmillis.com/**  
+
 ```sh
 GET order/_search
 {
