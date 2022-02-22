@@ -19,3 +19,6 @@ since I became hopeful that we could make enhancements for users after trying El
 
 # POSCO INTERVIEW
 https://youtu.be/qu0IXwi3Fq0
+
+# Joined Company's INTERVIEW for Conference
+https://youtu.be/qnM4Q7Deo7Y
