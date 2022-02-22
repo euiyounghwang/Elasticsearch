@@ -519,6 +519,340 @@ doc_count_error_upper_bound 는 이렇듯 포함되지 않은 데이터 중 마�
  
 > 위의 경우라면 각 shard 의 5번 행이 되며 10 + 10 + 10 = 30 을 리턴할 것이다.
 
+```sh
+GET order/_search
+{
+  "size": 0,
+  "aggs": {
+    "status_terms": {
+      "terms": {
+        "field": "_id",
+        "size": 150000
+      },
+      "aggs": {
+        "text": {
+          "terms": {
+            "field": "total_amount"
+          }
+        }
+      }
+    }
+  }
+}
+
+# Search Results
+{
+  "took" : 5,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 1,
+    "successful" : 1,
+    "skipped" : 0,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : {
+      "value" : 20,
+      "relation" : "eq"
+    },
+    "max_score" : null,
+    "hits" : [ ]
+  },
+  "aggregations" : {
+    "status_terms" : {
+      "doc_count_error_upper_bound" : 0,
+      "sum_other_doc_count" : 0,
+      "buckets" : [
+        {
+          "key" : "1",
+          "doc_count" : 1,
+          "text" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 0,
+            "buckets" : [
+              {
+                "key" : 160.0800018310547,
+                "doc_count" : 1
+              }
+            ]
+          }
+        },
+        {
+          "key" : "10",
+          "doc_count" : 1,
+          "text" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 0,
+            "buckets" : [
+              {
+                "key" : 41.22999954223633,
+                "doc_count" : 1
+              }
+            ]
+          }
+        },
+        {
+          "key" : "11",
+          "doc_count" : 1,
+          "text" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 0,
+            "buckets" : [
+              {
+                "key" : 123.54000091552734,
+                "doc_count" : 1
+              }
+            ]
+          }
+        },
+        {
+          "key" : "12",
+          "doc_count" : 1,
+          "text" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 0,
+            "buckets" : [
+              {
+                "key" : 175.83999633789062,
+                "doc_count" : 1
+              }
+            ]
+          }
+        },
+        {
+          "key" : "13",
+          "doc_count" : 1,
+          "text" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 0,
+            "buckets" : [
+              {
+                "key" : 93.69000244140625,
+                "doc_count" : 1
+              }
+            ]
+          }
+        },
+        {
+          "key" : "14",
+          "doc_count" : 1,
+          "text" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 0,
+            "buckets" : [
+              {
+                "key" : 80.33000183105469,
+                "doc_count" : 1
+              }
+            ]
+          }
+        },
+        {
+          "key" : "15",
+          "doc_count" : 1,
+          "text" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 0,
+            "buckets" : [
+              {
+                "key" : 113.86000061035156,
+                "doc_count" : 1
+              }
+            ]
+          }
+        },
+        {
+          "key" : "16",
+          "doc_count" : 1,
+          "text" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 0,
+            "buckets" : [
+              {
+                "key" : 61.95000076293945,
+                "doc_count" : 1
+              }
+            ]
+          }
+        },
+        {
+          "key" : "17",
+          "doc_count" : 1,
+          "text" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 0,
+            "buckets" : [
+              {
+                "key" : 74.9000015258789,
+                "doc_count" : 1
+              }
+            ]
+          }
+        },
+        {
+          "key" : "18",
+          "doc_count" : 1,
+          "text" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 0,
+            "buckets" : [
+              {
+                "key" : 80.75,
+                "doc_count" : 1
+              }
+            ]
+          }
+        },
+        {
+          "key" : "19",
+          "doc_count" : 1,
+          "text" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 0,
+            "buckets" : [
+              {
+                "key" : 127.41000366210938,
+                "doc_count" : 1
+              }
+            ]
+          }
+        },
+        {
+          "key" : "2",
+          "doc_count" : 1,
+          "text" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 0,
+            "buckets" : [
+              {
+                "key" : 106.26000213623047,
+                "doc_count" : 1
+              }
+            ]
+          }
+        },
+        {
+          "key" : "20",
+          "doc_count" : 1,
+          "text" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 0,
+            "buckets" : [
+              {
+                "key" : 75.88999938964844,
+                "doc_count" : 1
+              }
+            ]
+          }
+        },
+        {
+          "key" : "3",
+          "doc_count" : 1,
+          "text" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 0,
+            "buckets" : [
+              {
+                "key" : 38.88999938964844,
+                "doc_count" : 1
+              }
+            ]
+          }
+        },
+        {
+          "key" : "4",
+          "doc_count" : 1,
+          "text" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 0,
+            "buckets" : [
+              {
+                "key" : 168.22000122070312,
+                "doc_count" : 1
+              }
+            ]
+          }
+        },
+        {
+          "key" : "5",
+          "doc_count" : 1,
+          "text" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 0,
+            "buckets" : [
+              {
+                "key" : 135.80999755859375,
+                "doc_count" : 1
+              }
+            ]
+          }
+        },
+        {
+          "key" : "6",
+          "doc_count" : 1,
+          "text" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 0,
+            "buckets" : [
+              {
+                "key" : 202.74000549316406,
+                "doc_count" : 1
+              }
+            ]
+          }
+        },
+        {
+          "key" : "7",
+          "doc_count" : 1,
+          "text" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 0,
+            "buckets" : [
+              {
+                "key" : 25.270000457763672,
+                "doc_count" : 1
+              }
+            ]
+          }
+        },
+        {
+          "key" : "8",
+          "doc_count" : 1,
+          "text" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 0,
+            "buckets" : [
+              {
+                "key" : 123.66999816894531,
+                "doc_count" : 1
+              }
+            ]
+          }
+        },
+        {
+          "key" : "9",
+          "doc_count" : 1,
+          "text" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 0,
+            "buckets" : [
+              {
+                "key" : 98.87000274658203,
+                "doc_count" : 1
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
+
+```
+
+
+
+
 # Nested Aggregation
  
 >  Metric Aggregation 과 Bucket Aggregation 은 같이 사용되어 쿼리 결과를 얻어낼 때 사용할 수 있다.
@@ -630,8 +964,133 @@ GET order/_search
   }
 }
 
+```
+
+
+# Filter Aggregation
+```sh
+GET order/_search
+{
+  "size": 0,
+  "aggs": {
+    "low_value": {
+      "filter": {
+        "range": {
+          "total_amount": {
+            "lte": 50
+          }
+        }
+      },
+      "aggs": {
+        "avg_amount": {
+          "avg": {
+            "field": "total_amount"
+          }
+        }
+      }
+    }
+  }
+}
+
+# Search Results
+{
+  "took" : 2,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 1,
+    "successful" : 1,
+    "skipped" : 0,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : {
+      "value" : 20,
+      "relation" : "eq"
+    },
+    "max_score" : null,
+    "hits" : [ ]
+  },
+  "aggregations" : {
+    "low_value" : {
+      "doc_count" : 3,
+      "avg_amount" : {
+        "value" : 35.12999979654948
+      }
+    }
+  }
+}
 
 ```
 
+
+
+# Range Aggregation
+```sh
+{
+  "size": 0,
+  "aggs": {
+    "amount_distribution": {
+      "range": {
+        "field": "total_amount",
+        "ranges": [
+          {
+            "to": 50
+          },
+          {
+            "from": 50,
+            "to": 100
+          },
+          {
+            "from": 100
+          }
+        ]
+      }
+    }
+  }
+}
+
+# Search Results
+{
+  "took" : 2,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 1,
+    "successful" : 1,
+    "skipped" : 0,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : {
+      "value" : 20,
+      "relation" : "eq"
+    },
+    "max_score" : null,
+    "hits" : [ ]
+  },
+  "aggregations" : {
+    "amount_distribution" : {
+      "buckets" : [
+        {
+          "key" : "*-50.0",
+          "to" : 50.0,
+          "doc_count" : 3
+        },
+        {
+          "key" : "50.0-100.0",
+          "from" : 50.0,
+          "to" : 100.0,
+          "doc_count" : 7
+        },
+        {
+          "key" : "100.0-*",
+          "from" : 100.0,
+          "doc_count" : 10
+        }
+      ]
+    }
+  }
+}
+
+```
 
 
