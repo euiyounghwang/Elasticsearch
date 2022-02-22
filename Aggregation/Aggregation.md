@@ -1093,4 +1093,8 @@ GET order/_search
 
 ```
 
+# Histogram Aggregation
+혹은 Histogram 이라는 옵션을 사용하는데 이는 특정 간격으로 Range 를 구할수 있다.
+![image](https://user-images.githubusercontent.com/84139720/155049248-a08310d1-4a9c-4d51-918d-9d140313e24b.png)
+
 
