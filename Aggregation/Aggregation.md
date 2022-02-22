@@ -515,7 +515,7 @@ GET /_search
 > 결과적으로 Product B 와 Product C 의 집계 결과가 전체 documents 에서 집계한 것과 차이가 발생한다.
 
 ![image](https://user-images.githubusercontent.com/84139720/155047069-84a99c36-4d42-4fa9-bdd8-cfabc077a329.png)
-oc_count_error_upper_bound 는 이렇듯 포함되지 않은 데이터 중 마지막 행을 조사하여 리턴한다.
+doc_count_error_upper_bound 는 이렇듯 포함되지 않은 데이터 중 마지막 행을 조사하여 리턴한다.
  
 > 위의 경우라면 각 shard 의 5번 행이 되며 10 + 10 + 10 = 30 을 리턴할 것이다.
 
