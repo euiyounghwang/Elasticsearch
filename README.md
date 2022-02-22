@@ -1,4 +1,5 @@
 # Elasticsearch
+**Research, Design, Develope for elasticsearch 1.7.* Version ~
 Elasticsearch Cluster, Settings&amp;Mappings, Query, Extra
 
 > POSCO Group’s Enterprise Portal (EP) system is a business management system and corporate portal that acts as a gateway for accessing the internet and POSCO’s company intranet, where employees can access company-specific documents and applications. The EP Operations team is responsible for the construction and operation of the system’s search functionality and provides services to 40,000 employees of POSCO and their subsidiaries (about 20,000 POSCO employees and 20,000 employees of POSCO subsidiaries).
