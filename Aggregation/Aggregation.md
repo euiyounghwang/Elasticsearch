@@ -283,6 +283,36 @@ GET order/_search
 ```
 
 
+# date aggregation
+**2016-07-10T16:52:43Z**  
+**그리니치 천문대 표준시의 기준 : GMT(Greenwich Mean Time) 는 UTC와 같다.**  
+```sh
+GET order/_search
+{
+  "size": 1,
+  "aggs": {
+    "request_count_date": {
+      "date_range": {
+        "field": "purchased_at",
+        "ranges": [
+          {
+            "from": "2016-07-10 16:52:00",
+            "to": "2016-07-10 16:52:00"
+          },
+          {
+            "from": "2016-07-10 00:51:00",
+            "to": "2016-07-11 01:53:00"
+          }
+        ],
+        "format": "yyyy-MM-dd HH:mm:s"
+      }
+    }
+  }
+}
+```
+
+
+
 # Bucket Aggregations
  
 **Bucket Aggregations 기능을 이용하면 Elasticsearch 는 documents 를 위한 그룹인 Bucket 을 만든다.**  
