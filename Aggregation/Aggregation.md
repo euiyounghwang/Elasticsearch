@@ -525,4 +525,113 @@ doc_count_error_upper_bound 는 이렇듯 포함되지 않은 데이터 중 마�
 >  
 ![image](https://user-images.githubusercontent.com/84139720/155047101-7f73bc2b-075a-468d-a588-d628883f5601.png)
 
+**Nested Aggregation**  
+```sh
+GET order/_search
+{
+  "size":0,
+  "aggs": {
+    "status_terms":{
+      "terms": {
+        "field": "status.keyword"
+      },
+      "aggs": {
+        "status_stats": {
+          "stats": {
+            "field" : "total_amount"
+          }
+        }
+      }
+    }
+  }
+}
+
+
+# Search Results
+{
+  "took" : 1,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 1,
+    "successful" : 1,
+    "skipped" : 0,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : {
+      "value" : 20,
+      "relation" : "eq"
+    },
+    "max_score" : null,
+    "hits" : [ ]
+  },
+  "aggregations" : {
+    "status_terms" : {
+      "doc_count_error_upper_bound" : 0,
+      "sum_other_doc_count" : 0,
+      "buckets" : [
+        {
+          "key" : "cancelled",
+          "doc_count" : 6,
+          "status_stats" : {
+            "count" : 6,
+            "min" : 41.22999954223633,
+            "max" : 168.22000122070312,
+            "avg" : 113.82333437601726,
+            "sum" : 682.9400062561035
+          }
+        },
+        {
+          "key" : "completed",
+          "doc_count" : 5,
+          "status_stats" : {
+            "count" : 5,
+            "min" : 38.88999938964844,
+            "max" : 202.74000549316406,
+            "avg" : 111.91800079345703,
+            "sum" : 559.5900039672852
+          }
+        },
+        {
+          "key" : "confirmed",
+          "doc_count" : 4,
+          "status_stats" : {
+            "count" : 4,
+            "min" : 25.270000457763672,
+            "max" : 113.86000061035156,
+            "avg" : 68.9950008392334,
+            "sum" : 275.9800033569336
+          }
+        },
+        {
+          "key" : "processed",
+          "doc_count" : 4,
+          "status_stats" : {
+            "count" : 4,
+            "min" : 80.33000183105469,
+            "max" : 160.0800018310547,
+            "avg" : 103.7125015258789,
+            "sum" : 414.8500061035156
+          }
+        },
+        {
+          "key" : "pending",
+          "doc_count" : 1,
+          "status_stats" : {
+            "count" : 1,
+            "min" : 175.83999633789062,
+            "max" : 175.83999633789062,
+            "avg" : 175.83999633789062,
+            "sum" : 175.83999633789062
+          }
+        }
+      ]
+    }
+  }
+}
+
+
+```
+
+
 
