@@ -183,6 +183,106 @@ GET /order/_search
 ```
 
 
+# Range Aggregation  
+**range aggregation**  
+```sh
+GET order/_search
+{
+  "size": 0,
+  "aggs": {
+    "amout_range": {
+      "range": {
+        "field": "total_amount",
+        "ranges": [
+          {
+            "from": 75.88,
+            "to": 75.89
+          },
+          {
+            "from": 0,
+            "to": 200
+          },
+          {
+            "from": 200,
+            "to": 400
+          },
+          {
+            "from": 400,
+            "to": 600
+          },
+          {
+            "from": 600,
+            "to": 800
+          }
+        ]
+      }
+    }
+  }
+}
+
+```
+
+
+**GET Search Result Aggregation**  
+```sh
+{
+  "took" : 2,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 1,
+    "successful" : 1,
+    "skipped" : 0,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : {
+      "value" : 20,
+      "relation" : "eq"
+    },
+    "max_score" : null,
+    "hits" : [ ]
+  },
+  "aggregations" : {
+    "amout_range" : {
+      "buckets" : [
+        {
+          "key" : "0.0-200.0",
+          "from" : 0.0,
+          "to" : 200.0,
+          "doc_count" : 19
+        },
+        {
+          "key" : "75.88-75.89",
+          "from" : 75.88,
+          "to" : 75.89,
+          "doc_count" : 1
+        },
+        {
+          "key" : "200.0-400.0",
+          "from" : 200.0,
+          "to" : 400.0,
+          "doc_count" : 1
+        },
+        {
+          "key" : "400.0-600.0",
+          "from" : 400.0,
+          "to" : 600.0,
+          "doc_count" : 0
+        },
+        {
+          "key" : "600.0-800.0",
+          "from" : 600.0,
+          "to" : 800.0,
+          "doc_count" : 0
+        }
+      ]
+    }
+  }
+}
+
+```
+
+
 # Bucket Aggregations
  
 **Bucket Aggregations 기능을 이용하면 Elasticsearch 는 documents 를 위한 그룹인 Bucket 을 만든다.**  
