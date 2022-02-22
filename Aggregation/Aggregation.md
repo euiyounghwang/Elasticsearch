@@ -148,7 +148,7 @@ GET /order/_search
 **GET Search Result Aggregation**  
 ```sh
 {
-  "took" : 989,
+  "took" : 9,
   "timed_out" : false,
   "_shards" : {
     "total" : 1,
@@ -158,7 +158,7 @@ GET /order/_search
   },
   "hits" : {
     "total" : {
-      "value" : 2,
+      "value" : 20,
       "relation" : "eq"
     },
     "max_score" : null,
@@ -166,19 +166,20 @@ GET /order/_search
   },
   "aggregations" : {
     "max_sale" : {
-      "value" : 160.0800018310547
+      "value" : 202.74000549316406
     },
     "avg_sale" : {
-      "value" : 133.17000198364258
+      "value" : 105.46000080108642
     },
     "min_sale" : {
-      "value" : 106.26000213623047
+      "value" : 25.270000457763672
     },
     "total_sales" : {
-      "value" : 266.34000396728516
+      "value" : 2109.2000160217285
     }
   }
 }
+
 ```
 
 
@@ -209,7 +210,7 @@ GET /order/_search
 **GET Search Result Aggregation**  
 ```sh
 {
-  "took" : 5,
+  "took" : 1,
   "timed_out" : false,
   "_shards" : {
     "total" : 1,
@@ -219,7 +220,7 @@ GET /order/_search
   },
   "hits" : {
     "total" : {
-      "value" : 2,
+      "value" : 20,
       "relation" : "eq"
     },
     "max_score" : null,
@@ -231,11 +232,23 @@ GET /order/_search
       "sum_other_doc_count" : 0,
       "buckets" : [
         {
+          "key" : "cancelled",
+          "doc_count" : 6
+        },
+        {
           "key" : "completed",
-          "doc_count" : 1
+          "doc_count" : 5
+        },
+        {
+          "key" : "confirmed",
+          "doc_count" : 4
         },
         {
           "key" : "processed",
+          "doc_count" : 4
+        },
+        {
+          "key" : "pending",
           "doc_count" : 1
         }
       ]
@@ -279,7 +292,7 @@ GET /order/_search
   },
   "hits" : {
     "total" : {
-      "value" : 2,
+      "value" : 20,
       "relation" : "eq"
     },
     "max_score" : null,
@@ -288,14 +301,46 @@ GET /order/_search
   "aggregations" : {
     "status_terms" : {
       "doc_count_error_upper_bound" : 0,
-      "sum_other_doc_count" : 0,
+      "sum_other_doc_count" : 10,
       "buckets" : [
         {
-          "key" : 106.26000213623047,
+          "key" : 25.270000457763672,
           "doc_count" : 1
         },
         {
-          "key" : 160.0800018310547,
+          "key" : 38.88999938964844,
+          "doc_count" : 1
+        },
+        {
+          "key" : 41.22999954223633,
+          "doc_count" : 1
+        },
+        {
+          "key" : 61.95000076293945,
+          "doc_count" : 1
+        },
+        {
+          "key" : 74.9000015258789,
+          "doc_count" : 1
+        },
+        {
+          "key" : 75.88999938964844,
+          "doc_count" : 1
+        },
+        {
+          "key" : 80.33000183105469,
+          "doc_count" : 1
+        },
+        {
+          "key" : 80.75,
+          "doc_count" : 1
+        },
+        {
+          "key" : 93.69000244140625,
+          "doc_count" : 1
+        },
+        {
+          "key" : 98.87000274658203,
           "doc_count" : 1
         }
       ]
