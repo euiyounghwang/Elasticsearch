@@ -1,0 +1,207 @@
+
+## Sample.XML
+> WAS read Data Structure xml for create a Query
+
+<?xml version="1.0" encoding="UTF-8"?>
+<querys>
+	<system_host>http://10.132.57.74:9210/posco_citizen_dev</system_host>
+	<system id="CITIZEN" name="CITIZEN" companyCode="30">
+		<query id="query-header">
+		<![CDATA[
+            "_source": [
+                "KEY",
+                "KEY.keyword",
+                "CATEGORY",
+                "TITLE",                
+                "TARGET_URL",
+                "MAIL_ID",        
+                "USER_NO",
+                "USER_NAME",
+                "INPUTDATE",        
+                "UPDATED_DATE",
+                "COMPANY_CODE",
+                "COMPANY_NAME",
+                "DEPT_CODE",
+                "DEPT_NAME",
+                "SYSTEM_SUB_CODE",
+                "SYSTEM_SUB_NAME",
+                "ATTCH_TITLE_*"
+            ],
+            "size": 0,
+            "track_total_hits": true,
+		]]>
+		</query>
+     <query id="query-where">
+        <![CDATA[
+                "query": {"bool": {"must": [{"bool": {"<keyword-val/>": [<query-area/><reverse-where/>]}}]<filter-where/>}},
+            ]]>
+    </query>
+    <query id="reverse-where">
+        <![CDATA[
+                ,{
+                  "bool": {
+                    "<reverse-val/>": [
+                      <reverse-query-area/>
+                    ]
+                  }
+                }
+            ]]>
+    </query>
+    <query id="filter-where">
+        <![CDATA[
+                ,"filter": {
+                  "bool": {
+                    "must": [
+                      <filter-area/>
+                    ]
+                  }
+                }
+            ]]>
+    </query>
+    <query id="query-string-text">
+        <![CDATA[
+                {
+                    "query_string": {
+                        "query": "<keyword-val/>",
+                        "lenient": true,
+                        "fields": [
+                            <search-field-ids/>
+                        ],
+                        "default_operator": "AND"
+                    }
+                }
+            ]]>
+    </query>
+    <query id="query-filter-terms">
+        <![CDATA[
+                {
+                    "terms": {
+                        "<search-field-id/>": [
+                            <keyword-vals/>
+                        ]
+                    }
+                }
+            ]]>
+    </query>
+    <query id="query-filter-text">
+        <![CDATA[
+                {
+                    "multi_match": {
+                        "query": "<keyword-val/>",
+                        "lenient": true,
+                        "fields": [
+                            <search-field-ids/>
+                        ]
+                    }
+                }
+            ]]>
+    </query>
+    <query id="query-filter-range">
+        <![CDATA[
+                {
+                  "range": {
+                    "<search-field-id/>": {
+                      "format": "yyyy-MM-dd||yyyy"
+                      ,"gte": "<range-start/>"
+                      ,"lte": "<range-end/>"
+                    }
+                  }
+                }
+            ]]>
+    </query>
+    <query id="query-footer_default">
+        <![CDATA[
+                <sort-where/>
+                "from": <page-from/>,
+                "size": <page-size/>
+        ]]>
+    </query>
+    <query id="sort-where">
+        <![CDATA[
+                "sort": [  {<sort-area/>}],
+            ]]>
+    </query>
+    <query id="query-sort-date">
+        <![CDATA[
+                "<search-field-id/>": {
+                  "order": "<sort-val/>"
+                },
+            ]]>
+    </query>
+    <query id="query-footer">
+    <![CDATA[
+    "aggs": {
+     "aggs_search_response": {
+       "sampler": {
+         "shard_size": 150000
+       },
+       "aggregations": {
+         "group_by_category": {
+           "terms": {
+             "field": "CATEGORY.keyword",
+             "size": 100
+           },
+           "aggregations": {
+             "result_data": {
+               "top_hits": {
+                 "_source": {
+                   "include": [
+                     "KEY",
+                     "CATEGORY",
+                     "TITLE",
+                     "TARGET_URL",
+                     "MAIL_ID",
+                     "USER_NO",
+                     "USER_NAME",
+                     "INPUTDATE",
+                     "UPDATED_DATE",
+                     "COMPANY_CODE",
+                     "COMPANY_NAME",
+                     "DEPT_CODE",
+                     "DEPT_NAME",
+                     "SYSTEM_SUB_CODE",
+                     "SYSTEM_SUB_NAME",
+                     "ATTCH_TITLE_*"
+                   ]
+                 },
+                 "highlight": {
+                   "require_field_match": true,
+                   "order": "score",
+                   "pre_tags": [
+                     "<b>"
+                   ],
+                   "post_tags": [
+                     "</b>"
+                   ],
+                   "fields": {
+                     "*": {
+                       "number_of_fragments": 1,
+                       "type": "plain",
+                       "fragment_size": 150
+                     }
+                   }
+                 },
+				<sort-where/>
+                "from": <page-from/>,
+                "size": <page-size/>
+              }
+             }
+           }
+         }
+       }
+     }
+   }
+   ]]>
+    </query>
+		
+	      <!--<field id="es_prefix_type" query_format="query-filter-terms" search-field-id="PRE_FIX.keyword" select-area="filter-area"/> -->
+        <field id="es_operator" query_format="query-where" />
+        
+        <field id="es_keyword" query_format="query-string-text" search-field-ids="TITLE,TITLE.nGram,CONTENT,ATTCH_TITLE_*,ATTCH_CONTENTS_*"  />
+
+        <field id="KEY" query_format="query-string-text" search-field-ids="KEY.keyword" />
+        <field id="TITLE" query_format="query-string-text" search-field-ids="TITLE,TITLE.nGram" />
+		    <field id="CONTENT" query_format="query-string-text" search-field-ids="CONTENT" /> 
+        <field id="CATEGORY" query_format="query-filter-terms" search-field-id="CATEGORY.keyword" select-area="filter-area" />         
+	</system>
+</querys>
