@@ -3,9 +3,8 @@
 > WAS read Data Structure xml for create a Query
 
 <?xml version="1.0" encoding="UTF-8"?>
-<querys>
-	<system_host>http://10.132.57.74:9210/posco_citizen_dev</system_host>
-	<system id="CITIZEN" name="CITIZEN" companyCode="30">
+<querys>27.0.0.1:9210/test_idx</system_host>
+	<system id="sample" name="sample" companyCode="30">
 		<query id="query-header">
 		<![CDATA[
             "_source": [
