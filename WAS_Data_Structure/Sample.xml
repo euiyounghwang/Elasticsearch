@@ -3,7 +3,7 @@
 > WAS read Data Structure xml for create a Query
 
 <?xml version="1.0" encoding="UTF-8"?>
-<querys>27.0.0.1:9210/test_idx</system_host>
+<querys>127.0.0.1:9210/test_idx</system_host>
 	<system id="sample" name="sample" companyCode="30">
 		<query id="query-header">
 		<![CDATA[
